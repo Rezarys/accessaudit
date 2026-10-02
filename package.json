@@ -1,0 +1,17 @@
+{
+  "name": "accessaudit",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Free accessibility scan of a website: score and top three defects, with plain-language explanations and proposed code fixes.",
+  "license": "MIT",
+  "author": "Younes Z.",
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "axe-core": "4.10.3"
+  },
+  "scripts": {
+    "test": "node --test tests/"
+  }
+}
