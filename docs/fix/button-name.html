@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to fix buttons without a name (WCAG 4.1.2) | accessaudit</title>
+<meta name="description" content="Menu, close, quantity and carousel buttons made of icons only, announced as just 'button', and how to name them.">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<main>
+<p><a href="../">accessaudit</a></p>
+<h1>How to fix buttons without a name</h1>
+<p class="lead">WCAG 4.1.2 Name, Role, Value, level A. Rule <code>button-name</code> in axe-core.</p>
+
+<h2>What is wrong</h2>
+<p>A button has no text that assistive technology can read. On shop sites these are the menu button, the close cross of a pop-up, the plus and minus of a quantity field, carousel arrows and the wishlist heart. A screen reader says "button", and nothing tells the visitor what it does.</p>
+
+<h2>Who it blocks</h2>
+<p>Screen reader users and voice control users.</p>
+
+<h2>How to fix it</h2>
+<pre><code>&lt;!-- before --&gt;
+&lt;button class="menu-toggle"&gt;&lt;svg ...&gt;&lt;/svg&gt;&lt;/button&gt;
+
+&lt;!-- after --&gt;
+&lt;button class="menu-toggle" aria-label="Open menu" aria-expanded="false"&gt;&lt;svg aria-hidden="true" ...&gt;&lt;/svg&gt;&lt;/button&gt;</code></pre>
+<p>Name the action, not the icon: "Open menu", "Close", "Increase quantity", "Next image", "Add to wishlist".</p>
+
+<h2>Common mistakes</h2>
+<ul>
+  <li>Using a <code>div</code> or <code>span</code> with a click handler instead of a <code>button</code>: it cannot be reached with the keyboard either.</li>
+  <li>A name that never changes on a toggle, for example "Play" on a video that is already playing.</li>
+  <li>Using <code>title</code> alone: it is not read reliably and does not appear on touch screens.</li>
+</ul>
+
+<h2>How the scan proposes a fix</h2>
+<p>The scan adds an <code>aria-label</code> guessed from the button's class or id (menu, close, search, cart, next and similar words), or an EDIT ME text when nothing can be guessed. It runs the same rule on the fixed markup and checks that no existing attribute changed.</p>
+
+<section class="scan" aria-labelledby="scan-title">
+  <h2 id="scan-title">Check your own pages for free</h2>
+  <p>Drag this button onto your bookmarks bar: <a class="bookmarklet" href="javascript:(function(){var s=document.createElement('script');s.src='https://rezarys.github.io/accessaudit/scan.js';s.onerror=function(){alert('accessaudit cannot run on this page: the site does not allow scripts from other addresses.')};document.body.appendChild(s);})();">Scan with accessaudit</a>. Then open a page of your shop and click the bookmark: a score and the three main defects appear in a few seconds. The check runs in your browser: no content of your page leaves it, only the scanner is downloaded from this site. <a href="../demo/">Try it on a demo shop</a>.</p>
+</section>
+
+<footer>
+<p>Defects detected automatically must be confirmed by a human audit. Not legal advice. Made by Younes Z. Built with AI assistance, tested with automated tests, not reviewed line by line.</p>
+</footer>
+</main>
+</body>
+</html>

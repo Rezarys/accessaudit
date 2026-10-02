@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to fix links without a name (WCAG 2.4.4, 4.1.2) | accessaudit</title>
+<meta name="description" content="Icon links to the cart, the account or social networks that a screen reader announces as just 'link', and how to name them.">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<main>
+<p><a href="../">accessaudit</a></p>
+<h1>How to fix links without a name</h1>
+<p class="lead">WCAG 2.4.4 Link Purpose (In Context) and 4.1.2 Name, Role, Value, level A. Rule <code>link-name</code> in axe-core.</p>
+
+<h2>What is wrong</h2>
+<p>A link has no text that assistive technology can read. It usually contains only an icon (cart, account, Instagram) or an image without alt text. A screen reader announces "link", and the visitor has to follow it to find out where it goes.</p>
+
+<h2>Who it blocks</h2>
+<p>Screen reader users, and voice control users who cannot say the name of a link that has none.</p>
+
+<h2>How to fix it</h2>
+<pre><code>&lt;!-- before --&gt;
+&lt;a href="/cart"&gt;&lt;svg ...&gt;&lt;/svg&gt;&lt;/a&gt;
+
+&lt;!-- after: a name on the link --&gt;
+&lt;a href="/cart" aria-label="Cart"&gt;&lt;svg aria-hidden="true" ...&gt;&lt;/svg&gt;&lt;/a&gt;
+
+&lt;!-- or: text that is visually hidden but read aloud --&gt;
+&lt;a href="/cart"&gt;&lt;svg aria-hidden="true" ...&gt;&lt;/svg&gt;&lt;span class="visually-hidden"&gt;Cart&lt;/span&gt;&lt;/a&gt;</code></pre>
+<p>When the link wraps an image, giving the image a meaningful <code>alt</code> also names the link.</p>
+
+<h2>Common mistakes</h2>
+<ul>
+  <li>Naming the icon instead of the destination: "shopping bag icon" instead of "Cart".</li>
+  <li>Using the same name for different destinations, such as several "Read more" links.</li>
+  <li>Hiding the text with <code>display: none</code>, which hides it from screen readers too.</li>
+</ul>
+
+<h2>How the scan proposes a fix</h2>
+<p>The scan adds an <code>aria-label</code> guessed from the destination: the network name for social links, "Home" for the home page, a readable path such as "Cart" or "Account" otherwise. It runs the same rule on the fixed markup and checks that no existing attribute changed. Check the guess: it describes the address, not always the purpose.</p>
+
+<section class="scan" aria-labelledby="scan-title">
+  <h2 id="scan-title">Check your own pages for free</h2>
+  <p>Drag this button onto your bookmarks bar: <a class="bookmarklet" href="javascript:(function(){var s=document.createElement('script');s.src='https://rezarys.github.io/accessaudit/scan.js';s.onerror=function(){alert('accessaudit cannot run on this page: the site does not allow scripts from other addresses.')};document.body.appendChild(s);})();">Scan with accessaudit</a>. Then open a page of your shop and click the bookmark: a score and the three main defects appear in a few seconds. The check runs in your browser: no content of your page leaves it, only the scanner is downloaded from this site. <a href="../demo/">Try it on a demo shop</a>.</p>
+</section>
+
+<footer>
+<p>Defects detected automatically must be confirmed by a human audit. Not legal advice. Made by Younes Z. Built with AI assistance, tested with automated tests, not reviewed line by line.</p>
+</footer>
+</main>
+</body>
+</html>

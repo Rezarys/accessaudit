@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta property="og:site_name" content="Fern and Field">
+<style>
+body { margin: 0; font: 16px/1.5 Georgia, serif; background: #ffffff; color: #222222; }
+header { display: flex; gap: 12px; align-items: center; padding: 12px 20px; border-bottom: 1px solid #dddddd; }
+main { max-width: 40rem; margin: 0 auto; padding: 20px; }
+.demo-bar { background: #fff4d6; border-bottom: 2px solid #c98a00; padding: 10px 20px; font: 15px/1.5 system-ui, sans-serif; color: #1b1b1b; }
+.demo-bar button { font: inherit; font-weight: 600; padding: 6px 14px; border: 0; border-radius: 6px; background: #0b5cad; color: #ffffff; cursor: pointer; }
+.demo-bar a { color: #0b5cad; }
+.icon { width: 22px; height: 22px; }
+</style>
+</head>
+<body>
+<div class="demo-bar">
+  <p>This is a demo shop with deliberate accessibility defects. <button type="button" id="run">Scan this page</button> or go <a href="../">back to accessaudit</a>.</p>
+</div>
+<header>
+  <a href="./"><img src="fern-and-field-logo.svg" width="40" height="40"></a>
+  <a href="#cart"><svg class="icon" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4"></circle></svg></a>
+  <button class="menu-toggle"><svg class="icon" viewBox="0 0 10 10"><rect width="10" height="10"></rect></svg></button>
+</header>
+<main>
+  <h1>Fern and Field garden shop</h1>
+  <p style="color:#aaaaaa">Free delivery on all orders over 50 EUR for your garden and our shop.</p>
+  <img src="red-trowel.svg" width="120" height="80">
+  <p>Red trowel, 12 EUR.</p>
+  <form onsubmit="return false">
+    <input type="email" name="newsletter_email">
+    <button type="submit">Subscribe</button>
+  </form>
+</main>
+<script>
+document.getElementById('run').addEventListener('click', function () {
+  var s = document.createElement('script');
+  s.src = '../scan.js';
+  document.body.appendChild(s);
+});
+</script>
+</body>
+</html>

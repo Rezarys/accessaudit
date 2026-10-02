@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to fix low contrast text (WCAG 1.4.3) | accessaudit</title>
+<meta name="description" content="Why light grey text fails WCAG 1.4.3, the 4.5 to 1 and 3 to 1 ratios, and how to pick the nearest colour that passes.">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<main>
+<p><a href="../">accessaudit</a></p>
+<h1>How to fix low contrast text</h1>
+<p class="lead">WCAG 1.4.3 Contrast (Minimum), level AA. Rule <code>color-contrast</code> in axe-core.</p>
+
+<h2>What is wrong</h2>
+<p>The text colour is too close to the background colour. WCAG measures this as a contrast ratio between 1 to 1 (same colour) and 21 to 1 (black on white). Normal text needs at least <strong>4.5 to 1</strong>. Large text needs at least <strong>3 to 1</strong>; large means at least 24 px, or at least about 18.7 px when bold.</p>
+<p>On shop sites the usual cases are light grey prices or shipping notes, white text on a light product photo, placeholder text in form fields, and small legal text in the footer.</p>
+
+<h2>Who it blocks</h2>
+<p>People with low vision, many older people, people with colour vision deficiency, and anyone reading on a phone in sunlight.</p>
+
+<h2>How to fix it</h2>
+<p>Keep the hue and make the text darker on a light background, or lighter on a dark background, until the ratio passes. For example, grey <code>#999999</code> on white is 2.85 to 1; <code>#767676</code> on white is 4.54 to 1 and passes.</p>
+<pre><code>/* before: 2.85 to 1 */
+.price-note { color: #999999; }
+
+/* after: 4.54 to 1 */
+.price-note { color: #767676; }</code></pre>
+<p>For text over images, put the text on a solid or semi-opaque background, or add a dark overlay under it. A text shadow alone is not reliable.</p>
+
+<h2>Common mistakes</h2>
+<ul>
+  <li>Checking only the main colour and forgetting hover, focus and sale states. Controls that are really disabled are exempt, but a button that only looks disabled while it still works is not.</li>
+  <li>Relying on the brand colour for small text. A brand colour that passes for large headings can fail for body text.</li>
+  <li>Placeholder text used as the only instruction: it is usually light grey and fails.</li>
+</ul>
+
+<h2>How the scan proposes a fix</h2>
+<p>For each failing text, the scan reads the measured text and background colours, moves the text colour step by step toward black or white, and keeps the first colour that reaches the required ratio. It then checks that ratio again in the browser before showing it. When the background is an image or a gradient, the measured colour may be approximate, so check the result on the page.</p>
+
+<section class="scan" aria-labelledby="scan-title">
+  <h2 id="scan-title">Check your own pages for free</h2>
+  <p>Drag this button onto your bookmarks bar: <a class="bookmarklet" href="javascript:(function(){var s=document.createElement('script');s.src='https://rezarys.github.io/accessaudit/scan.js';s.onerror=function(){alert('accessaudit cannot run on this page: the site does not allow scripts from other addresses.')};document.body.appendChild(s);})();">Scan with accessaudit</a>. Then open a page of your shop and click the bookmark: a score and the three main defects appear in a few seconds. The check runs in your browser: no content of your page leaves it, only the scanner is downloaded from this site. <a href="../demo/">Try it on a demo shop</a>.</p>
+</section>
+
+<footer>
+<p>Defects detected automatically must be confirmed by a human audit. Not legal advice. Made by Younes Z. Built with AI assistance, tested with automated tests, not reviewed line by line.</p>
+</footer>
+</main>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to fix a missing page title (WCAG 2.4.2) | accessaudit</title>
+<meta name="description" content="Pages without a title element, why the title is the first thing a screen reader announces, and a title pattern for shop pages.">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<main>
+<p><a href="../">accessaudit</a></p>
+<h1>How to fix a missing page title</h1>
+<p class="lead">WCAG 2.4.2 Page Titled, level A. Rule <code>document-title</code> in axe-core.</p>
+
+<h2>What is wrong</h2>
+<p>The page has no <code>&lt;title&gt;</code> element, or it is empty. The title is the first thing a screen reader announces when a page opens, and the name shown in browser tabs, bookmarks and history.</p>
+
+<h2>Who it blocks</h2>
+<p>Screen reader users, people with cognitive disabilities who use the title to know where they are, and anyone with many tabs open.</p>
+
+<h2>How to fix it</h2>
+<pre><code>&lt;head&gt;
+  &lt;title&gt;Red steel trowel | Fern and Field&lt;/title&gt;
+  ...
+&lt;/head&gt;</code></pre>
+<p>Put the specific part first and the shop name last, so the difference between pages is heard first: "Cart | Fern and Field", "Checkout, step 2 of 3: delivery | Fern and Field".</p>
+
+<h2>Common mistakes</h2>
+<ul>
+  <li>The same title on every page, usually the shop name alone.</li>
+  <li>Single-page checkouts that never update the title between steps.</li>
+  <li>Error pages titled like the page that failed.</li>
+</ul>
+
+<h2>How the scan proposes a fix</h2>
+<p>The scan proposes a <code>&lt;title&gt;</code> built from the site name declared in the page, or the main heading, or the host name, and runs the same rule on a page built with it. Adjust the text so each page has its own title.</p>
+
+<section class="scan" aria-labelledby="scan-title">
+  <h2 id="scan-title">Check your own pages for free</h2>
+  <p>Drag this button onto your bookmarks bar: <a class="bookmarklet" href="javascript:(function(){var s=document.createElement('script');s.src='https://rezarys.github.io/accessaudit/scan.js';s.onerror=function(){alert('accessaudit cannot run on this page: the site does not allow scripts from other addresses.')};document.body.appendChild(s);})();">Scan with accessaudit</a>. Then open a page of your shop and click the bookmark: a score and the three main defects appear in a few seconds. The check runs in your browser: no content of your page leaves it, only the scanner is downloaded from this site. <a href="../demo/">Try it on a demo shop</a>.</p>
+</section>
+
+<footer>
+<p>Defects detected automatically must be confirmed by a human audit. Not legal advice. Made by Younes Z. Built with AI assistance, tested with automated tests, not reviewed line by line.</p>
+</footer>
+</main>
+</body>
+</html>

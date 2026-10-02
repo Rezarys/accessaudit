@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>accessaudit: free accessibility check for online shops (WCAG 2.1 AA)</title>
+<meta name="description" content="Open any page of your shop, click one bookmark, and get an accessibility score and the three most serious WCAG 2.1 AA defects in seconds, each explained in plain words with a proposed code fix.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+<h1>Free accessibility check for your online shop</h1>
+<p class="lead">Open any page of your site and click one bookmark. In a few seconds you get a score and the three most serious accessibility defects, each explained in plain words, with a proposed fix in your code.</p>
+
+<section class="scan" aria-labelledby="start">
+  <h2 id="start">Start in three steps, on a computer</h2>
+  <ol>
+    <li>Show the bookmarks bar of your browser (Ctrl+Shift+B, or Cmd+Shift+B on a Mac, in Chrome, Edge and Firefox).</li>
+    <li>Drag this button onto the bar: <a class="bookmarklet" href="javascript:(function(){var s=document.createElement('script');s.src='https://rezarys.github.io/accessaudit/scan.js';s.onerror=function(){alert('accessaudit cannot run on this page: the site does not allow scripts from other addresses.')};document.body.appendChild(s);})();">Scan with accessaudit</a></li>
+    <li>Open a page of your shop and click the bookmark. A panel opens with the result.</li>
+  </ol>
+  <p>The check runs in your own browser. No content of your page leaves it: only the scanner is downloaded from this site. No account is needed and nothing is stored. <a href="demo/">Try it first on a demo shop</a>.</p>
+</section>
+
+<h2>What you get</h2>
+<ul>
+  <li>A score out of 100 and the number of defects found on the page you opened.</li>
+  <li>The three most serious defects, in plain words: what is wrong, who it blocks, and the WCAG 2.1 criterion.</li>
+  <li>For each one, a proposed fix in your code, checked before you see it: the same automated rule passes on the fixed markup, and no existing attribute is removed.</li>
+</ul>
+<p class="note">Defects detected automatically, to be confirmed by a human audit. Automated tools find only part of the accessibility problems a site can have, so a good score does not mean a site meets WCAG or any law.</p>
+
+<section class="price" aria-labelledby="price-title">
+<h2 id="price-title">Full report and monitoring</h2>
+<div class="prices">
+  <div>
+    <p class="amount">49 EUR once</p>
+    <p>Full report for one site: every page crawled, every defect explained, the proposed fix for each, in order of priority.</p>
+  </div>
+  <div>
+    <p class="amount">19 EUR per month</p>
+    <p>Monitoring for one site: a new scan after every change, with an alert when a defect appears. Not built yet.</p>
+  </div>
+</div>
+<p>Neither is open for payment yet. If you want one, <a href="https://github.com/Rezarys/accessaudit/issues/1">say which in this public request</a>. Nothing is charged.</p>
+</section>
+
+<h2>Why now</h2>
+<p>The European Accessibility Act (Directive (EU) 2019/882) applies since 28 June 2025 to e-commerce services and several other services sold to consumers in the EU. Microenterprises that provide services (fewer than 10 staff, and 2 million EUR or less of annual turnover or balance sheet) are exempt for those services; the exemption does not cover products. Each member state sets its own rules and penalties. The usual technical reference is the European standard EN 301 549, which includes WCAG 2.1 level AA. This page is not legal advice.</p>
+
+<h2>Fix guides for the most frequent defects</h2>
+<nav aria-label="Fix guides">
+<ul>
+  <li><a href="fix/color-contrast.html">Low contrast text</a></li>
+  <li><a href="fix/image-alt.html">Images without alt text</a></li>
+  <li><a href="fix/label.html">Form fields without a label</a></li>
+  <li><a href="fix/link-name.html">Links without a name</a></li>
+  <li><a href="fix/button-name.html">Buttons without a name</a></li>
+  <li><a href="fix/html-has-lang.html">Missing page language</a></li>
+  <li><a href="fix/document-title.html">Missing page title</a></li>
+  <li><a href="fix/meta-viewport.html">Zoom blocked on mobile</a></li>
+  <li><a href="fix/select-name.html">Drop-down lists without a label</a></li>
+  <li><a href="fix/frame-title.html">Embedded frames without a title</a></li>
+</ul>
+</nav>
+
+<h2>How it works, and its limits</h2>
+<p>The bookmark loads the open source axe-core rules for WCAG 2.0 and 2.1, levels A and AA, into the page you have open, and checks that page. Fixes are proposed from the failing markup and reviewed by rules in a hidden frame before they are shown. Some sites forbid scripts from other addresses; there the bookmark shows a short message or does nothing, and no panel opens. Only the open page is checked; the full report covers the whole site. The code is open: <a href="https://github.com/Rezarys/accessaudit">github.com/Rezarys/accessaudit</a>.</p>
+
+<footer>
+<p>Made by Younes Z. Built with AI assistance, tested with automated tests, not reviewed line by line. Not affiliated with Deque, GitHub or the European Union. MIT licence.</p>
+</footer>
+</main>
+</body>
+</html>

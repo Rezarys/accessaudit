@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to fix a missing page language (WCAG 3.1.1) | accessaudit</title>
+<meta name="description" content="Why a missing lang attribute makes screen readers use the wrong voice, and the one-attribute fix for every language version of a shop.">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<main>
+<p><a href="../">accessaudit</a></p>
+<h1>How to fix a missing page language</h1>
+<p class="lead">WCAG 3.1.1 Language of Page, level A. Rule <code>html-has-lang</code> in axe-core.</p>
+
+<h2>What is wrong</h2>
+<p>The <code>&lt;html&gt;</code> element has no <code>lang</code> attribute. Screen readers then fall back to the visitor's default voice, which may read French text with English pronunciation, or the reverse. Browsers also use the language for translation offers and for hyphenation.</p>
+
+<h2>Who it blocks</h2>
+<p>Screen reader users, and visitors who rely on automatic translation.</p>
+
+<h2>How to fix it</h2>
+<pre><code>&lt;!-- before --&gt;
+&lt;html class="no-js"&gt;
+
+&lt;!-- after --&gt;
+&lt;html class="no-js" lang="fr"&gt;</code></pre>
+<p>Use the code of the language the page is written in: <code>en</code>, <code>fr</code>, <code>de</code>, <code>es</code>, <code>it</code>, <code>nl</code>, <code>pt</code>, and so on. A region can be added, such as <code>fr-BE</code>. On a multilingual shop, each language version needs its own value; most platforms set it from the store language setting, which is the place to fix it.</p>
+
+<h2>Common mistakes</h2>
+<ul>
+  <li>Hard-coding <code>lang="en"</code> in a theme used for every language.</li>
+  <li>Invalid codes such as <code>lang="english"</code> or <code>lang="fr_FR"</code> (the separator is a hyphen).</li>
+  <li>Forgetting parts of a page in another language, which need their own <code>lang</code> on the element.</li>
+</ul>
+
+<h2>How the scan proposes a fix</h2>
+<p>The scan guesses the language from common words in the visible text, adds the <code>lang</code> attribute to the original <code>&lt;html&gt;</code> tag, and runs the same rule on a page built with it. Check the guess before using it.</p>
+
+<section class="scan" aria-labelledby="scan-title">
+  <h2 id="scan-title">Check your own pages for free</h2>
+  <p>Drag this button onto your bookmarks bar: <a class="bookmarklet" href="javascript:(function(){var s=document.createElement('script');s.src='https://rezarys.github.io/accessaudit/scan.js';s.onerror=function(){alert('accessaudit cannot run on this page: the site does not allow scripts from other addresses.')};document.body.appendChild(s);})();">Scan with accessaudit</a>. Then open a page of your shop and click the bookmark: a score and the three main defects appear in a few seconds. The check runs in your browser: no content of your page leaves it, only the scanner is downloaded from this site. <a href="../demo/">Try it on a demo shop</a>.</p>
+</section>
+
+<footer>
+<p>Defects detected automatically must be confirmed by a human audit. Not legal advice. Made by Younes Z. Built with AI assistance, tested with automated tests, not reviewed line by line.</p>
+</footer>
+</main>
+</body>
+</html>

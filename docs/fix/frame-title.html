@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to fix embedded frames without a title (WCAG 2.4.1, 4.1.2) | accessaudit</title>
+<meta name="description" content="Video, map, review and chat widgets embedded in an iframe with no title, and how to name them.">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<main>
+<p><a href="../">accessaudit</a></p>
+<h1>How to fix embedded frames without a title</h1>
+<p class="lead">WCAG 2.4.1 Bypass Blocks and 4.1.2 Name, Role, Value, level A. Rule <code>frame-title</code> in axe-core.</p>
+
+<h2>What is wrong</h2>
+<p>An <code>&lt;iframe&gt;</code> has no <code>title</code> attribute. Screen readers list the frames of a page by their title, so an untitled frame is announced as "frame" with no hint of what is inside. On shop sites these are product videos, store maps, review widgets, chat and payment frames.</p>
+
+<h2>Who it blocks</h2>
+<p>Screen reader users.</p>
+
+<h2>How to fix it</h2>
+<pre><code>&lt;!-- before --&gt;
+&lt;iframe src="https://www.youtube.com/embed/..."&gt;&lt;/iframe&gt;
+
+&lt;!-- after --&gt;
+&lt;iframe src="https://www.youtube.com/embed/..." title="Video: how to sharpen a trowel"&gt;&lt;/iframe&gt;</code></pre>
+<p>Frames added by a third-party script are titled in that script's settings, or by the provider. If you cannot change it, tell the provider: the defect is still on your page.</p>
+
+<h2>Common mistakes</h2>
+<ul>
+  <li>Generic titles such as "iframe" or "widget".</li>
+  <li>The same title on several frames of the same page.</li>
+</ul>
+
+<h2>How the scan proposes a fix</h2>
+<p>The scan adds a <code>title</code> guessed from the frame address ("YouTube video", "Map", or "Embedded content from" and the host), runs the same rule on the fixed markup, and checks that no existing attribute changed. A title that says what the video or map is about is better.</p>
+
+<section class="scan" aria-labelledby="scan-title">
+  <h2 id="scan-title">Check your own pages for free</h2>
+  <p>Drag this button onto your bookmarks bar: <a class="bookmarklet" href="javascript:(function(){var s=document.createElement('script');s.src='https://rezarys.github.io/accessaudit/scan.js';s.onerror=function(){alert('accessaudit cannot run on this page: the site does not allow scripts from other addresses.')};document.body.appendChild(s);})();">Scan with accessaudit</a>. Then open a page of your shop and click the bookmark: a score and the three main defects appear in a few seconds. The check runs in your browser: no content of your page leaves it, only the scanner is downloaded from this site. <a href="../demo/">Try it on a demo shop</a>.</p>
+</section>
+
+<footer>
+<p>Defects detected automatically must be confirmed by a human audit. Not legal advice. Made by Younes Z. Built with AI assistance, tested with automated tests, not reviewed line by line.</p>
+</footer>
+</main>
+</body>
+</html>

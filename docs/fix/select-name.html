@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to fix drop-down lists without a label (WCAG 4.1.2) | accessaudit</title>
+<meta name="description" content="Size, colour, country and sort-by drop-downs with no label, why a screen reader cannot say what they are for, and the fix.">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<main>
+<p><a href="../">accessaudit</a></p>
+<h1>How to fix drop-down lists without a label</h1>
+<p class="lead">WCAG 4.1.2 Name, Role, Value, level A. Rule <code>select-name</code> in axe-core.</p>
+
+<h2>What is wrong</h2>
+<p>A <code>&lt;select&gt;</code> element has no label. A screen reader announces something like "combo box, M", without saying that this is the size. On shop sites the usual cases are size and colour pickers, the "sort by" list, and the country list at checkout.</p>
+
+<h2>Who it blocks</h2>
+<p>Screen reader users and voice control users.</p>
+
+<h2>How to fix it</h2>
+<pre><code>&lt;label for="size"&gt;Size&lt;/label&gt;
+&lt;select id="size" name="size"&gt;
+  &lt;option&gt;S&lt;/option&gt;
+  &lt;option&gt;M&lt;/option&gt;
+&lt;/select&gt;</code></pre>
+<p>If there is no room for visible text, <code>&lt;select name="sort" aria-label="Sort products by"&gt;</code> is the smallest change.</p>
+
+<h2>Common mistakes</h2>
+<ul>
+  <li>Using the first option as the label ("Choose a size"). It is read as a value, not as the name of the list.</li>
+  <li>A visible heading above the list that is not tied to it with <code>for</code> and <code>id</code>.</li>
+</ul>
+
+<h2>How the scan proposes a fix</h2>
+<p>The scan adds an <code>aria-label</code> built from the list's name or id, runs the same rule on the fixed markup, and checks that no existing attribute changed.</p>
+
+<section class="scan" aria-labelledby="scan-title">
+  <h2 id="scan-title">Check your own pages for free</h2>
+  <p>Drag this button onto your bookmarks bar: <a class="bookmarklet" href="javascript:(function(){var s=document.createElement('script');s.src='https://rezarys.github.io/accessaudit/scan.js';s.onerror=function(){alert('accessaudit cannot run on this page: the site does not allow scripts from other addresses.')};document.body.appendChild(s);})();">Scan with accessaudit</a>. Then open a page of your shop and click the bookmark: a score and the three main defects appear in a few seconds. The check runs in your browser: no content of your page leaves it, only the scanner is downloaded from this site. <a href="../demo/">Try it on a demo shop</a>.</p>
+</section>
+
+<footer>
+<p>Defects detected automatically must be confirmed by a human audit. Not legal advice. Made by Younes Z. Built with AI assistance, tested with automated tests, not reviewed line by line.</p>
+</footer>
+</main>
+</body>
+</html>

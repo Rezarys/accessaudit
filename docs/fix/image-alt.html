@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to fix images without alt text (WCAG 1.1.1) | accessaudit</title>
+<meta name="description" content="How to write alt text for product photos, logos and decorative images, and when to use an empty alt attribute.">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<main>
+<p><a href="../">accessaudit</a></p>
+<h1>How to fix images without alt text</h1>
+<p class="lead">WCAG 1.1.1 Non-text Content, level A. Rule <code>image-alt</code> in axe-core.</p>
+
+<h2>What is wrong</h2>
+<p>An <code>&lt;img&gt;</code> element has no <code>alt</code> attribute. A screen reader then announces "image", or reads the file name, such as "five zero five zero image underscore one dot png". The visitor does not know what the picture shows.</p>
+
+<h2>Who it blocks</h2>
+<p>Blind and low-vision visitors who use a screen reader, and anyone whose images fail to load.</p>
+
+<h2>How to fix it</h2>
+<p>Ask what the image adds to the page, and write that in a few words.</p>
+<pre><code>&lt;!-- product photo: name what matters for buying --&gt;
+&lt;img src="trowel.jpg" alt="Red steel garden trowel with wooden handle"&gt;
+
+&lt;!-- logo that links home: say where the link goes --&gt;
+&lt;a href="/"&gt;&lt;img src="logo.svg" alt="Fern and Field, home"&gt;&lt;/a&gt;
+
+&lt;!-- purely decorative: empty alt, so it is skipped --&gt;
+&lt;img src="divider-leaf.png" alt=""&gt;</code></pre>
+
+<h2>Common mistakes</h2>
+<ul>
+  <li>Starting with "image of" or "photo of": screen readers already say it is an image.</li>
+  <li>Repeating the product name that is already in the text next to the image, word for word. Describe what the photo adds instead, such as the colour or the angle.</li>
+  <li>Leaving the alt attribute out on decorative images. An empty <code>alt=""</code> is correct for them; a missing alt is not.</li>
+  <li>Using the file name as alt text, which many shop platforms do by default.</li>
+</ul>
+
+<h2>How the scan proposes a fix</h2>
+<p>The scan adds an <code>alt</code> attribute to the failing image, using its title or a readable file name when there is one, or an EDIT ME text when there is not. It then loads the fixed markup in the browser, runs the same rule again, and checks that no other attribute was changed. The words still need a human: only you know what the photo is for.</p>
+
+<section class="scan" aria-labelledby="scan-title">
+  <h2 id="scan-title">Check your own pages for free</h2>
+  <p>Drag this button onto your bookmarks bar: <a class="bookmarklet" href="javascript:(function(){var s=document.createElement('script');s.src='https://rezarys.github.io/accessaudit/scan.js';s.onerror=function(){alert('accessaudit cannot run on this page: the site does not allow scripts from other addresses.')};document.body.appendChild(s);})();">Scan with accessaudit</a>. Then open a page of your shop and click the bookmark: a score and the three main defects appear in a few seconds. The check runs in your browser: no content of your page leaves it, only the scanner is downloaded from this site. <a href="../demo/">Try it on a demo shop</a>.</p>
+</section>
+
+<footer>
+<p>Defects detected automatically must be confirmed by a human audit. Not legal advice. Made by Younes Z. Built with AI assistance, tested with automated tests, not reviewed line by line.</p>
+</footer>
+</main>
+</body>
+</html>

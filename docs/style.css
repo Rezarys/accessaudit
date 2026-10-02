@@ -1,0 +1,32 @@
+:root { --fg: #1b1b1b; --muted: #4a4a4a; --accent: #0b5cad; --bg: #ffffff; --soft: #f3f5f8; --line: #d0d5dc; }
+* { box-sizing: border-box; }
+body { margin: 0; font: 17px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; color: var(--fg); background: var(--bg); }
+main { max-width: 46rem; margin: 0 auto; padding: 1.5rem 1.25rem 3rem; }
+a { color: var(--accent); text-decoration: underline; }
+a:focus-visible, button:focus-visible, input:focus-visible { outline: 3px solid #f2a900; outline-offset: 2px; }
+h1 { font-size: 1.9rem; line-height: 1.25; margin: 1rem 0 0.75rem; }
+h2 { font-size: 1.3rem; margin: 2rem 0 0.5rem; }
+h3 { font-size: 1.1rem; margin: 1.5rem 0 0.4rem; }
+.lead { font-size: 1.15rem; color: var(--muted); }
+.note, .small { color: var(--muted); }
+.small { font-size: 0.9rem; }
+.note { border-left: 4px solid var(--line); padding-left: 0.8rem; }
+pre { background: var(--soft); border: 1px solid var(--line); border-radius: 6px; padding: 0.8rem; white-space: pre-wrap; overflow-wrap: anywhere; font-size: 0.9rem; }
+code { font-family: ui-monospace, Menlo, Consolas, monospace; }
+.scan { background: var(--soft); border: 1px solid var(--line); border-radius: 8px; padding: 1rem 1.2rem; margin: 1.5rem 0; }
+.scan label { display: block; font-weight: 600; margin-bottom: 0.3rem; }
+.scan .row { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.scan input[type="url"] { flex: 1 1 16rem; font: inherit; padding: 0.55rem 0.7rem; border: 1px solid #6b7480; border-radius: 6px; }
+.scan button { font: inherit; font-weight: 600; padding: 0.55rem 1.1rem; border: 0; border-radius: 6px; background: var(--accent); color: #ffffff; cursor: pointer; }
+.scan p { margin: 0.6rem 0 0; font-size: 0.92rem; color: var(--muted); }
+.scan ol { margin: 0.4rem 0 0; padding-left: 1.3rem; }
+.scan h2 { margin-top: 0.2rem; }
+a.bookmarklet { display: inline-block; font-weight: 600; padding: 0.35rem 0.9rem; border-radius: 6px; background: var(--accent); color: #ffffff; text-decoration: none; cursor: grab; }
+.price { border: 1px solid var(--line); border-radius: 8px; padding: 0.4rem 1.2rem 1rem; margin: 2rem 0; }
+.prices { display: flex; gap: 1rem; flex-wrap: wrap; }
+.prices > div { flex: 1 1 14rem; }
+.amount { font-size: 1.4rem; font-weight: 700; }
+.score strong { font-size: 1.6rem; }
+.impact { font-size: 0.85rem; font-weight: 600; color: var(--muted); }
+nav ul { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 0.3rem 1rem; }
+footer { border-top: 1px solid var(--line); margin-top: 3rem; padding-top: 1rem; font-size: 0.9rem; color: var(--muted); }

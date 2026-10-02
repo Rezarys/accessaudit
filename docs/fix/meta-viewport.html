@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to fix zoom blocked on mobile (WCAG 1.4.4) | accessaudit</title>
+<meta name="description" content="user-scalable=no and maximum-scale=1 stop visitors from zooming on phones. Why it fails WCAG 1.4.4 and the safe viewport tag.">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<main>
+<p><a href="../">accessaudit</a></p>
+<h1>How to fix zoom blocked on mobile</h1>
+<p class="lead">WCAG 1.4.4 Resize Text, level AA. Rule <code>meta-viewport</code> in axe-core.</p>
+
+<h2>What is wrong</h2>
+<p>The viewport tag contains <code>user-scalable=no</code>, or a <code>maximum-scale</code> below 2. On many phones and tablets this stops visitors from pinching to zoom, so text that is too small for them stays too small.</p>
+
+<h2>Who it blocks</h2>
+<p>Low-vision visitors on mobile, and anyone trying to read small print such as delivery terms or a size chart.</p>
+
+<h2>How to fix it</h2>
+<pre><code>&lt;!-- before --&gt;
+&lt;meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"&gt;
+
+&lt;!-- after --&gt;
+&lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;</code></pre>
+<p>This tag is often in the theme layout file, so one change fixes every page.</p>
+
+<h2>Common mistakes</h2>
+<ul>
+  <li>Blocking zoom to stop iOS from zooming into form fields on focus. The usual fix for that is a font size of at least 16 px on inputs, not blocking zoom.</li>
+  <li>Removing <code>user-scalable=no</code> but keeping <code>maximum-scale=1</code>.</li>
+</ul>
+
+<h2>How the scan proposes a fix</h2>
+<p>The scan removes only the <code>user-scalable</code> and <code>maximum-scale</code> parts of the <code>content</code> attribute and keeps the rest, then runs the same rule on a page built with the new tag.</p>
+
+<section class="scan" aria-labelledby="scan-title">
+  <h2 id="scan-title">Check your own pages for free</h2>
+  <p>Drag this button onto your bookmarks bar: <a class="bookmarklet" href="javascript:(function(){var s=document.createElement('script');s.src='https://rezarys.github.io/accessaudit/scan.js';s.onerror=function(){alert('accessaudit cannot run on this page: the site does not allow scripts from other addresses.')};document.body.appendChild(s);})();">Scan with accessaudit</a>. Then open a page of your shop and click the bookmark: a score and the three main defects appear in a few seconds. The check runs in your browser: no content of your page leaves it, only the scanner is downloaded from this site. <a href="../demo/">Try it on a demo shop</a>.</p>
+</section>
+
+<footer>
+<p>Defects detected automatically must be confirmed by a human audit. Not legal advice. Made by Younes Z. Built with AI assistance, tested with automated tests, not reviewed line by line.</p>
+</footer>
+</main>
+</body>
+</html>
